@@ -33,100 +33,114 @@ body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg)
 @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,60px)}}
 @keyframes float3{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,30px)}}
 /* ===== LAYOUT ===== */
-.ct{position:relative;z-index:1;max-width:580px;margin:0 auto;padding:20px 16px 40px}
-/* ===== HEADER ===== */
-.hd{text-align:center;padding:40px 0 10px;position:relative}
-.hd-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:999px;font-size:11px;font-weight:600;background:var(--tag-bg);color:var(--accent);letter-spacing:1px;border:1px solid var(--border);margin-bottom:14px}
-.hd h1{font-size:36px;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2}
-.dark .hd h1{background:linear-gradient(135deg,#e8a0c0,#90c8a0,#e0b080);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hd p{font-size:14px;color:var(--text2);margin-top:6px;letter-spacing:2px}
+.ct{position:relative;z-index:1;max-width:580px;margin:0 auto;padding:20px 16px 30px}
 /* ===== THEME TOGGLE ===== */
 .theme-toggle{position:fixed;top:16px;right:16px;z-index:100;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;backdrop-filter:blur(8px)}
 .theme-toggle:hover{transform:scale(1.1)}.theme-toggle:active{transform:scale(.95)}
-/* ===== DRAW BUTTON ===== */
-.draw-wrap{text-align:center;padding:50px 0 20px}
-.draw-btn{width:200px;height:200px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:20px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .3s;box-shadow:0 8px 40px rgba(248,180,217,.25);position:relative;overflow:hidden}
-.draw-btn::before{content:'';position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.2) 50%,transparent 70%);animation:btnShine 3s ease-in-out infinite}
-@keyframes btnShine{0%,100%{transform:rotate(0deg) translateX(0)}50%{transform:rotate(180deg) translateX(10px)}}
-.draw-btn:hover{transform:scale(1.05);box-shadow:0 12px 50px rgba(248,180,217,.35)}
-.draw-btn:active{transform:scale(.95)}
-.draw-btn .icon{font-size:48px;display:block;margin-bottom:6px}
-/* ===== DRAWING ANIMATION ===== */
-.draw-btn.loading{animation:btnPulse .8s ease-in-out infinite;pointer-events:none}
-@keyframes btnPulse{0%,100%{transform:scale(1)}50%{transform:scale(.95)}}
-/* ===== CARD ===== */
-.card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:28px 24px;margin-top:16px;backdrop-filter:blur(12px);box-shadow:var(--shadow);position:relative;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s,background .4s}
-.card.show{opacity:1;transform:translateY(0)}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
-/* ===== SECTION ===== */
-.sec{margin-bottom:20px;animation:secFade .5s ease forwards;opacity:0}
-.sec:nth-child(1){animation-delay:.1s}.sec:nth-child(2){animation-delay:.2s}.sec:nth-child(3){animation-delay:.3s}.sec:nth-child(4){animation-delay:.4s}.sec:nth-child(5){animation-delay:.5s}.sec:nth-child(6){animation-delay:.6s}
-@keyframes secFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.sec-hd{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.sec-hd .ico{font-size:18px}
-.sec-hd .tt{font-size:14px;font-weight:700;color:var(--text);letter-spacing:1px}
+/* ===== HOME ===== */
+.home{text-align:center;padding:40px 0;position:relative}
+.home-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:999px;font-size:11px;font-weight:600;background:var(--tag-bg);color:var(--accent);letter-spacing:1px;border:1px solid var(--border);margin-bottom:14px}
+.home h1{font-size:34px;font-weight:800;letter-spacing:-1px;background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2;margin-bottom:6px}
+.dark .home h1{background:linear-gradient(135deg,#e8a0c0,#90c8a0,#e0b080);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.home .sub{font-size:13px;color:var(--text2);letter-spacing:3px;margin-bottom:36px}
+/* ===== CARDS PICK ===== */
+.pick-hint{font-size:13px;color:var(--text2);margin-bottom:20px;letter-spacing:2px}
+.card-row{display:flex;gap:12px;justify-content:center;margin-bottom:30px}
+.pick-card{width:130px;height:180px;border-radius:16px;cursor:pointer;position:relative;transition:all .35s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d;perspective:600px;border:2px solid var(--border);background:transparent;font-family:inherit}
+.pick-card .cf,.pick-card .cb{position:absolute;inset:0;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;transition:all .5s cubic-bezier(.4,0,.2,1)}
+.pick-card .cf{background:linear-gradient(145deg,var(--accent),var(--accent2));color:#fff;z-index:2}
+.pick-card .cf .q{font-size:36px;margin-bottom:6px}
+.pick-card .cf .l{font-size:12px;font-weight:600;letter-spacing:2px}
+.pick-card .cb{background:var(--card);transform:rotateY(180deg);border:2px solid var(--accent);z-index:1}
+.pick-card .cb .q{font-size:40px;margin-bottom:6px}
+.pick-card .cb .l{font-size:13px;font-weight:600;color:var(--accent)}
+.pick-card.flipped .cf{transform:rotateY(180deg);z-index:1}
+.pick-card.flipped .cb{transform:rotateY(0deg);z-index:2}
+.pick-card:not(.flipped):hover{transform:translateY(-8px);box-shadow:0 12px 40px rgba(248,180,217,.25)}
+.pick-card:not(.flipped):active{transform:scale(.95)}
+.pick-card.chosen{transform:scale(1.08);border-color:var(--accent);box-shadow:0 0 30px rgba(248,180,217,.3)}
+.pick-card.dim{opacity:.3;transform:scale(.9)}
+/* ===== STEP ===== */
+.step-view{display:none}
+.step-counter{text-align:center;font-size:11px;color:var(--text2);letter-spacing:3px;margin-bottom:6px}
+.step-bar{height:3px;border-radius:2px;background:var(--border);overflow:hidden;margin-bottom:24px}
+.step-bar-in{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .6s ease;width:0%}
+.step-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px 22px;backdrop-filter:blur(12px);box-shadow:var(--shadow);min-height:200px;opacity:0;transform:translateY(15px);transition:opacity .5s,transform .5s,background .4s}
+.step-card.show{opacity:1;transform:translateY(0)}
+.step-card .step-title{font-size:15px;font-weight:700;letter-spacing:2px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.step-card .step-title .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse-dot 1.5s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.step-card .step-content{font-size:15px;line-height:1.9;min-height:60px}
+.step-card .step-content .hl{color:var(--accent);font-weight:600}
+/* ===== TYPEWRITER ===== */
+.tw-cursor::after{content:'▊';animation:twBlink .7s step-end infinite;color:var(--accent);font-size:12px;margin-left:2px}
+@keyframes twBlink{0%,100%{opacity:1}50%{opacity:0}}
+/* ===== NEXT BUTTON ===== */
+.next-btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px}
+.next-btn:active{transform:scale(.97)}
+.next-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 16px rgba(248,180,217,.2)}
+.next-primary:hover{box-shadow:0 6px 24px rgba(248,180,217,.3)}
+/* ===== RESULT ===== */
+.result-view{display:none}
+.result-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:28px 22px;backdrop-filter:blur(12px);box-shadow:var(--shadow);overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s,background .4s}
+.result-card.show{opacity:1;transform:translateY(0)}
+.result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3))}
+.sec{margin-bottom:18px}.sec:last-child{margin-bottom:0}
+.sec-hd{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sec-hd .ico{font-size:16px}
+.sec-hd .tt{font-size:13px;font-weight:700;color:var(--text);letter-spacing:1px}
 .sec-hd .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
-.sec-body{font-size:14px;line-height:1.8;color:var(--text)}
+.sec-body{font-size:13px;line-height:1.8;color:var(--text)}
 .sec-body .hl{color:var(--accent);font-weight:600}
-/* ===== TAG ===== */
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{padding:4px 12px;border-radius:999px;font-size:12px;font-weight:500;background:var(--tag-bg);color:var(--accent);border:1px solid var(--border)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{padding:3px 10px;border-radius:999px;font-size:11px;font-weight:500;background:var(--tag-bg);color:var(--accent);border:1px solid var(--border)}
 .tag.green{background:rgba(184,230,200,.1);color:var(--accent2)}
-.tag.orange{background:rgba(255,214,165,.1);color:var(--accent3)}
-/* ===== STORY ===== */
-.story{padding:12px 14px;border-radius:12px;margin-bottom:8px;border-left:3px solid;font-size:13px;line-height:1.7;position:relative}
+.story{padding:10px 12px;border-radius:10px;margin-bottom:6px;border-left:3px solid;font-size:12px;line-height:1.6}
+.story:last-child{margin-bottom:0}
 .story.good{border-color:var(--accent2);background:rgba(184,230,200,.04)}
 .story.normal{border-color:var(--accent3);background:rgba(255,214,165,.04)}
 .story.rough{border-color:var(--accent);background:rgba(248,180,217,.04)}
-.story .s-badge{font-size:10px;font-weight:600;letter-spacing:1px;margin-bottom:4px;display:block}
+.story .s-badge{font-size:10px;font-weight:600;letter-spacing:1px;margin-bottom:2px;display:block}
 .story.good .s-badge{color:var(--accent2)}
 .story.normal .s-badge{color:var(--accent3)}
 .story.rough .s-badge{color:var(--accent)}
-/* ===== FORTUNE ===== */
-.fortune-box{display:flex;align-items:center;gap:16px;padding:14px 16px;border-radius:14px;background:var(--tag-bg);border:1px solid var(--border)}
-.fortune-icon{font-size:36px;flex-shrink:0}
-.fortune-info{flex:1}
-.fortune-level{font-size:16px;font-weight:700}
-.fortune-desc{font-size:12px;color:var(--text2);margin-top:2px}
-/* ===== MISC ===== */
+.fortune-box{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:var(--tag-bg);border:1px solid var(--border)}
+.fortune-icon{font-size:28px;flex-shrink:0}
+.fortune-level{font-size:14px;font-weight:700}
+.fortune-desc{font-size:11px;color:var(--text2);margin-top:2px}
 .misc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.misc-item{padding:10px 12px;border-radius:10px;border:1px solid var(--border);text-align:center}
-.misc-item .mi-label{font-size:10px;color:var(--text2);letter-spacing:1px;margin-bottom:4px}
-.misc-item .mi-value{font-size:14px;font-weight:600}
-/* ===== BUTTONS ===== */
-.actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
-.btn{padding:12px 20px;border-radius:12px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;flex:1;min-width:0}
+.misc-item{padding:8px 10px;border-radius:8px;border:1px solid var(--border);text-align:center}
+.misc-item .mi-label{font-size:9px;color:var(--text2);letter-spacing:1px;margin-bottom:2px}
+.misc-item .mi-value{font-size:13px;font-weight:600}
+.actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn{padding:12px 16px;border-radius:12px;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;flex:1;min-width:0}
 .btn:active{transform:scale(.96)}
-.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 16px rgba(248,180,217,.2)}
-.btn-primary:hover{box-shadow:0 6px 24px rgba(248,180,217,.3)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
 .btn-second{background:var(--tag-bg);color:var(--text);border:1px solid var(--border)}
-.btn-second:hover{background:var(--border)}
 .btn-copy{background:rgba(184,230,200,.15);color:var(--accent2);border:1px solid rgba(184,230,200,.2)}
-.btn-copy:hover{background:rgba(184,230,200,.25)}
+/* ===== RESULT HEADER ===== */
+.result-hd{text-align:center;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.result-hd .rh-icon{font-size:42px;display:block;margin-bottom:6px}
+.result-hd .rh-title{font-size:18px;font-weight:800;letter-spacing:1px}
+.result-hd .rh-sub{font-size:11px;color:var(--text2);margin-top:4px;letter-spacing:2px}
 /* ===== TOAST ===== */
-.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);padding:12px 24px;border-radius:12px;background:var(--card);border:1px solid var(--border);font-size:13px;font-weight:500;color:var(--text);box-shadow:0 4px 20px rgba(0,0,0,.1);z-index:999;opacity:0;transition:all .4s;backdrop-filter:blur(12px);pointer-events:none;white-space:nowrap}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);padding:10px 20px;border-radius:10px;background:var(--card);border:1px solid var(--border);font-size:13px;font-weight:500;color:var(--text);box-shadow:0 4px 20px rgba(0,0,0,.1);z-index:999;opacity:0;transition:all .4s;backdrop-filter:blur(12px);pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-/* ===== TYPEWRITER ===== */
-.tw-cursor::after{content:'|';animation:twBlink .8s step-end infinite;color:var(--accent);font-weight:300}
-@keyframes twBlink{0%,100%{opacity:1}50%{opacity:0}}
 /* ===== FOOTER ===== */
-.ft{text-align:center;padding:30px 0 10px;font-size:10px;color:var(--text2);letter-spacing:1px;line-height:1.8}
-.ft a{color:var(--accent);text-decoration:none}
+.ft{text-align:center;padding:24px 0 10px;font-size:10px;color:var(--text2);letter-spacing:1px;line-height:1.8;position:relative;z-index:1}
 /* ===== RESPONSIVE ===== */
 @media(max-width:480px){
-  .hd h1{font-size:28px}
-  .draw-btn{width:160px;height:160px;font-size:17px}
-  .draw-btn .icon{font-size:40px}
-  .card{padding:20px 16px;border-radius:18px}
+  .home h1{font-size:27px}
+  .pick-card{width:104px;height:148px}
+  .pick-card .cf .q{font-size:28px}
+  .pick-card .cf .l{font-size:10px}
+  .card-row{gap:8px}
+  .step-card{padding:20px 16px}
+  .result-card{padding:20px 16px;border-radius:18px}
   .misc-grid{grid-template-columns:1fr}
   .actions{flex-direction:column}
   .theme-toggle{top:12px;right:12px;width:36px;height:36px;font-size:16px}
 }
-/* ===== DRAW SHAKE ===== */
-@keyframes cardShake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-4px)}20%,40%,60%,80%{transform:translateX(4px)}}
-.card.shake{animation:cardShake .4s}
-/* ===== SCREENSHOT AREA ===== */
-#capture-area{width:100%}
 </style>
 </head>
 <body>
@@ -140,31 +154,52 @@ body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg)
 
 <div class="ct" id="app">
 
-  <div class="hd">
-    <div class="hd-badge">🎲 人生模拟器</div>
-    <h1>随机人生模拟器</h1>
-    <p>重新抽一次·不一样的人生</p>
-  </div>
-
-  <!-- HOME -->
+  <!-- ===== HOME ===== -->
   <div id="homeView">
-    <div class="draw-wrap">
-      <button class="draw-btn" id="drawBtn" onclick="drawLife()">
-        <span class="icon">🎲</span>
-        抽取全新人生
-      </button>
+    <div class="home">
+      <div class="home-badge">🎲 随机人生模拟器</div>
+      <h1>你想过哪一种人生？</h1>
+      <div class="sub">选一张命运之卡 · 开启你的人生剧本</div>
+
+      <div class="pick-hint">👇 选一张你的命运卡牌</div>
+      <div class="card-row" id="cardRow">
+        <button class="pick-card" data-idx="0" onclick="pickCard(0)">
+          <div class="cf"><span class="q">❓</span><span class="l">命运之潮</span></div>
+          <div class="cb"><span class="q">🌊</span><span class="l">汹涌人生</span></div>
+        </button>
+        <button class="pick-card" data-idx="1" onclick="pickCard(1)">
+          <div class="cf"><span class="q">❓</span><span class="l">命运之树</span></div>
+          <div class="cb"><span class="q">🌿</span><span class="l">安稳人生</span></div>
+        </button>
+        <button class="pick-card" data-idx="2" onclick="pickCard(2)">
+          <div class="cf"><span class="q">❓</span><span class="l">命运之星</span></div>
+          <div class="cb"><span class="q">🌟</span><span class="l">璀璨人生</span></div>
+        </button>
+      </div>
+      <div style="font-size:11px;color:var(--text2);letter-spacing:1px">点击卡牌，翻开你的命运</div>
     </div>
   </div>
 
-  <!-- RESULT -->
-  <div id="resultView" style="display:none">
+  <!-- ===== STEP ===== -->
+  <div class="step-view" id="stepView">
+    <div class="step-counter" id="stepCounter">第 1 / 6 章</div>
+    <div class="step-bar"><div class="step-bar-in" id="stepBar"></div></div>
+    <div class="step-card" id="stepCard">
+      <div class="step-title" id="stepTitle"><span class="dot"></span> 命运正在展开...</div>
+      <div class="step-content" id="stepContent"></div>
+      <button class="next-btn next-primary" id="nextBtn" onclick="nextStep()">下一章 →</button>
+    </div>
+  </div>
+
+  <!-- ===== RESULT ===== -->
+  <div class="result-view" id="resultView">
     <div id="capture-area">
-      <div class="card show" id="resultCard">
+      <div class="result-card" id="resultCard">
         <div id="cardContent"></div>
       </div>
     </div>
     <div class="actions">
-      <button class="btn btn-primary" onclick="drawLife()">🔄 重新抽取</button>
+      <button class="btn btn-primary" onclick="restart()">🔄 重新抽取</button>
       <button class="btn btn-second" onclick="captureCard()">📸 保存截图</button>
       <button class="btn btn-copy" onclick="copyShare()">📋 复制文案</button>
     </div>
@@ -181,341 +216,438 @@ body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg)
   const c=document.getElementById('particles');
   for(let i=0;i<40;i++){const p=document.createElement('div');p.className='pt';const s=3+Math.random()*5;p.style.width=s+'px';p.style.height=s+'px';p.style.left=Math.random()*100+'%';p.style.background=['rgba(248,180,217,.4)','rgba(184,230,200,.4)','rgba(255,214,165,.4)','rgba(200,180,255,.4)'][Math.floor(Math.random()*4)];p.style.animationDuration=(10+Math.random()*20)+'s';p.style.animationDelay=Math.random()*15+'s';c.appendChild(p)}
 })();
-function gR(arr,w){return arr[Math.floor(Math.random()*arr.length)]}
-function gRN(arr,n){const s=new Set(arr);const r=[];const pool=[...s];for(let i=0;i<n&&pool.length>0;i++){const idx=Math.floor(Math.random()*pool.length);r.push(pool[idx]);pool.splice(idx,1)}return r}
+
+// ==================== UTILS ====================
+function gR(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function gRN(arr,n){const pool=[...arr];const r=[];for(let i=0;i<n&&pool.length>0;i++){const idx=Math.floor(Math.random()*pool.length);r.push(pool[idx]);pool.splice(idx,1)}return r}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
 
 // ==================== CONTENT LIBRARY ====================
-const DATA={
+const D={
   era:[
-    {label:'00后',emoji:'🌱'},{label:'90后',emoji:'🌸'},{label:'80后',emoji:'🌺'},{label:'70后',emoji:'🌻'},{label:'60后',emoji:'🌿'},{label:'10后',emoji:'🍃'}
+    {label:'00后',emoji:'🌱'},{label:'90后',emoji:'🌸'},{label:'80后',emoji:'🌺'},{label:'70后',emoji:'🌻'},{label:'60后',emoji:'🌿'}
   ],
   family:[
-    '书香门第，父母都是大学教授','普通工薪家庭，但充满爱','小县城个体户，小时候在店里长大','农村家庭，从小干农活长大','单亲家庭，跟妈妈相依为命',
-    '高干家庭，家教严格','经商世家，家里有矿','教师家庭，从小被管得很严','医生家庭，吃饭都在聊病例','艺术世家，从小泡在画室里',
-    '军人家庭，规矩特别多','移民家庭，从小在两个文化中长大','重组家庭，有3个兄弟姐妹','孤儿院长大，靠自己闯出来','三代同堂的大家庭，热闹得很',
-    '渔民家庭，海边长大','手工艺人家庭，会很多绝活','运动员家庭，从小泡体育馆','公务员家庭，安稳但平淡','务农世家，后来进城打拼'
+    '书香门第，父母都是大学教授','普通工薪家庭，但充满爱','小县城个体户，在店里长大','农村家庭，从小干农活','单亲家庭，跟妈妈相依为命',
+    '高干家庭，家教严格','经商世家，家里有矿','教师家庭，管得很严','医生家庭，吃饭聊病例','艺术世家，泡在画室长大',
+    '军人家庭，规矩特别多','三代同堂大家庭，热闹','渔民家庭，海边长大','手工艺人家庭，会绝活','运动员家庭，泡体育馆长大',
+    '公务员家庭，安稳平淡','务农世家，进城打拼','孤儿院长大，靠自己闯出来','重组家庭，有3个兄弟姐妹','小老板家庭，日子红火'
   ],
-  personality:[
-    '社恐但内心戏丰富','社交恐怖分子','理性到冷漠','感性到泛滥','拖延症晚期','强迫症晚期','乐观到没心没肺','悲观但很清醒',
-    '表面高冷内心话痨','表面热情内心冷漠','笑点极低','泪点极低','嘴硬心软','心硬嘴甜','选择困难症','什么都想试试',
-    '完美主义晚期','随遇而安','控制欲强但不说','佛系但卷起来很可怕','社牛但需要充电','社恐但工作需要','细节控','大局观选手',
-    '老好人但内心有账本','刺头但讲义气','卷王','躺平但躺不平','显眼包','小透明但很开心','讨好型人格但正在改','冷幽默大师',
-    '浪漫至死不渝','实用主义至上','好奇心害死猫','什么都懂亿点点'
+  trait:[
+    '社恐但内心戏丰富','社交恐怖分子','理性到冷漠','感性到泛滥','拖延症晚期','强迫症晚期','乐观没心没肺','悲观但很清醒',
+    '表面高冷内心话痨','笑点极低','泪点极低','嘴硬心软','选择困难症','什么都想试试','完美主义晚期','随遇而安',
+    '佛系但卷起来可怕','社牛但需要充电','细节控','大局观选手','老好人但心里有账本','刺头但讲义气','卷王本王','躺平但躺不平',
+    '显眼包','浪漫至死不渝','实用主义至上','好奇心害死猫','什么都懂亿点点','冷幽默大师','爱操心的命','钝感力满分'
   ],
   look:[
-    '清秀耐看型，越看越顺眼','浓颜系，人群中一眼看到','娃娃脸，永远比实际年龄小','高冷长相，其实人很好','可爱挂，笑起来眼睛弯弯',
-    '文艺气质，像从书里走出来的','运动系，阳光健康','斯文戴眼镜，学霸气质','酷飒风，走路带风','温柔系，让人想靠近',
-    '有梨涡，笑起来很甜','有酒窝，不笑也在笑','丹凤眼，很有味道','双眼皮大眼睛，电力十足','个子高挑，气场两米',
-    '个子娇小但能量巨大','有颗小虎牙，很可爱','长相很大气，有福相','五官立体，像混血','圆脸圆眼睛，很有亲和力',
-    '棱角分明，很有轮廓感','长得很舒服，不惊艳但耐看','有点厌世脸，但其实很温柔','笑容有感染力，看到就想笑'
+    '清秀耐看，越看越顺眼','浓颜系，人群中一眼看到','娃娃脸，永远比实际小','高冷长相其实人很好','可爱挂，笑起来眼睛弯弯',
+    '文艺气质，像从书里走出来的','运动系阳光健康','斯文学霸气质','酷飒风走路带风','温柔系让人想靠近',
+    '有梨涡笑起来很甜','丹凤眼很有味道','个子高挑气场两米','个子娇小但能量巨大','长相很大气有福相',
+    '五官立体像混血','圆脸圆眼很有亲和力','棱角分明很有轮廓感','有点厌世脸但其实很温柔','笑容有感染力'
   ],
   skill:[
-    {name:'钢琴十级',cat:'art'},{name:'油画天赋',cat:'art'},{name:'街舞达人',cat:'art'},{name:'毛笔字写得出神入化',cat:'art'},{name:'摄影构图感一流',cat:'art'},
-    {name:'陶艺做得很好',cat:'art'},{name:'唱歌很好听',cat:'art'},{name:'即兴表演天赋',cat:'art'},{name:'设计审美很绝',cat:'art'},{name:'脱口秀天赋',cat:'art'},
-    {name:'百米冲刺特别快',cat:'sport'},{name:'游泳像鱼一样',cat:'sport'},{name:'篮球打得很好',cat:'sport'},{name:'瑜伽身体柔韧性超好',cat:'sport'},{name:'爬山从不觉得累',cat:'sport'},
-    {name:'羽毛球高手',cat:'sport'},{name:'滑雪天赋异禀',cat:'sport'},{name:'骑行耐力惊人',cat:'sport'},{name:'数学思维很强',cat:'brain'},{name:'逻辑推理一流',cat:'brain'},
-    {name:'学语言非常快',cat:'brain'},{name:'记忆力超群',cat:'brain'},{name:'编程天赋',cat:'brain'},{name:'写作表达能力很强',cat:'brain'},{name:'数独/解谜高手',cat:'brain'},
-    {name:'投资理财嗅觉敏锐',cat:'brain'},{name:'辩论/谈判高手',cat:'brain'},{name:'共情能力极强',cat:'social'},{name:'自来熟，跟谁都能聊',cat:'social'},{name:'组织策划能力很强',cat:'social'},
-    {name:'领导力与生俱来',cat:'social'},{name:'调解矛盾天赋',cat:'social'},{name:'讲故事很吸引人',cat:'social'},{name:'销售天赋',cat:'social'},{name:'做菜很好吃',cat:'hand'},
-    {name:'手工DIY很厉害',cat:'hand'},{name:'园艺绿手指',cat:'hand'},{name:'修东西一把好手',cat:'hand'},{name:'化妆/穿搭天赋',cat:'hand'},{name:'烘焙达人',cat:'hand'},
-    {name:'木工/金工手艺',cat:'hand'},{name:'插花审美很好',cat:'hand'},{name:'宠物沟通能力',cat:'hand'},{name:'冥想/正念天赋',cat:'special'},{name:'第六感特别准',cat:'special'},
-    {name:'运气特别好',cat:'special'},{name:'做梦经常预言成真',cat:'special'},{name:'品味很好大家会参考意见',cat:'special'},{name:'总能在关键时刻遇到贵人',cat:'special'},{name:'治愈系能量，让人想倾诉',cat:'special'}
+    {n:'钢琴十级'},{n:'油画天赋'},{n:'街舞达人'},{n:'毛笔字出神入化'},{n:'摄影构图感一流'},
+    {n:'陶艺做得很好'},{n:'唱歌很好听'},{n:'即兴表演天赋'},{n:'设计审美很绝'},{n:'脱口秀天赋'},
+    {n:'百米冲刺特别快'},{n:'游泳像鱼一样'},{n:'篮球打得很好'},{n:'瑜伽身体柔韧性超好'},{n:'爬山从不累'},
+    {n:'羽毛球高手'},{n:'滑雪天赋异禀'},{n:'骑行耐力惊人'},{n:'数学思维很强'},{n:'逻辑推理一流'},
+    {n:'学语言非常快'},{n:'记忆力超群'},{n:'编程天赋'},{n:'写作表达能力很强'},{n:'投资嗅觉敏锐'},
+    {n:'共情能力极强'},{n:'自来熟跟谁都能聊'},{n:'组织策划能力强'},{n:'领导力与生俱来'},{n:'讲故事很吸引人'},
+    {n:'做菜很好吃'},{n:'手工DIY很厉害'},{n:'园艺绿手指'},{n:'修东西一把好手'},{n:'化妆穿搭天赋'},
+    {n:'烘焙达人'},{n:'插花审美很好'},{n:'冥想天赋'},{n:'第六感特别准'},{n:'运气特别好'},
+    {n:'总在关键时刻遇贵人'},{n:'治愈系让人想倾诉'},{n:'砍价天赋'},{n:'方向感特别好从不迷路'},{n:'宠物都喜欢你'}
   ],
   job:[
     '互联网大厂程序员','医生','律师','大学老师','建筑师','插画师','心理咨询师','数据分析师','自媒体博主','音乐制作人',
-    '编剧/导演','游戏策划','金融分析师','产品经理','会计师','室内设计师','摄影师','幼师','服装设计师','药剂师',
-    '烘焙店主','宠物医生','飞行员','翻译','非遗传承人','健身教练','花艺师','咖啡店主','海洋生物研究员','考古学家',
-    '天文台研究员','消防员','记者','策展人','调香师','珠宝设计师','漫画家','电竞选手','农民/农场主','自由撰稿人'
+    '编剧/导演','游戏策划','金融分析师','产品经理','室内设计师','摄影师','幼师','服装设计师','药剂师','烘焙店主',
+    '宠物医生','飞行员','翻译','非遗传承人','健身教练','花艺师','咖啡店主','海洋生物研究员','考古学家','消防员',
+    '记者','策展人','调香师','珠宝设计师','漫画家','电竞选手','农场主','自由撰稿人','民宿老板','旅行体验师'
   ],
   sidejob:[
     '深夜电台主播','兼职插画师','塔罗牌占卜师','剧本杀DM','二手家具改造师','美食探店博主','宠物寄养店主','网文写手',
-    '跟拍摄影师','手工饰品店主','代购/买手','红酒品鉴师','飞盘教练','脱口秀演员','密室逃脱NPC','陪玩/陪聊师',
-    '露营领队','汉服设计师','家庭烘焙','游戏代练','Vlog博主','兼职翻译','宠物美容师','花艺工作室',
-    '二手书店店主','占星师','冥想导师','街头艺人','改娃师','手账素材设计师'
+    '跟拍摄影师','手工饰品店主','红酒品鉴师','飞盘教练','脱口秀演员','密室NPC','露营领队','家庭烘焙',
+    '游戏代练','Vlog博主','兼职翻译','宠物美容师','花艺工作室','二手书店店主','占星师','冥想导师',
+    '改娃师','手账素材设计师','跑腿代办','宠物沟通师'
   ],
   storyChild:[
-    {type:'good',text:'在全校面前演讲拿了第一，从此不怕上台'},
-    {type:'good',text:'画画拿了全国奖，被美术老师当成宝'},
-    {type:'good',text:'暑假在外婆家学会了骑自行车和抓鱼'},
-    {type:'good',text:'高中组了乐队在校庆演出，成了校园红人'},
-    {type:'good',text:'校运会打破了学校长跑纪录'},
-    {type:'good',text:'偷偷写的小说被杂志刊登了，拿到第一笔稿费'},
-    {type:'good',text:'在超市抽奖中了一台游戏机，开心了一整年'},
-    {type:'good',text:'被选为升旗手，觉得那是人生最高光的时刻'},
-    {type:'normal',text:'平平无奇念完了书，没什么特别的事'},
-    {type:'normal',text:'和邻居家的小孩一起长大，后来搬家再没见过'},
-    {type:'normal',text:'成绩中等偏上，老师记不住名字的那种'},
-    {type:'normal',text:'喜欢放学后去小卖部买辣条和冰棍'},
-    {type:'normal',text:'暑假在老家学会了打麻将'},
-    {type:'normal',text:'攒了很久零花钱买了第一本漫画书'},
-    {type:'normal',text:'每天最开心的时候就是放学路上跟小伙伴瞎逛'},
-    {type:'rough',text:'家里条件不好差点没书读，但坚持下来了'},
-    {type:'rough',text:'被同学排挤过一段时间，后来转学了'},
-    {type:'rough',text:'中考/高考失利，去了不喜欢的学校'},
-    {type:'rough',text:'小时候生过一场大病，在医院待了很久'},
-    {type:'rough',text:'转学好几次从来没交到过好朋友'},
-    {type:'rough',text:'小时候说话口吃被嘲笑过'},
-    {type:'rough',text:'父母离婚了，在单亲家庭中长大'}
+    {type:'good',t:'在全校面前演讲拿了第一，从此不怕上台'},
+    {type:'good',t:'画画拿了全国奖，被美术老师当成宝'},
+    {type:'good',t:'暑假在外婆家学会了骑自行车和抓鱼'},
+    {type:'good',t:'高中组了乐队在校庆演出，成了校园红人'},
+    {type:'good',t:'校运会打破了学校长跑纪录'},
+    {type:'good',t:'写的小说被杂志刊登了，拿到第一笔稿费'},
+    {type:'good',t:'超市抽奖中了一台游戏机，开心了一整年'},
+    {type:'good',t:'被选为升旗手，觉得是人生最高光的时刻'},
+    {type:'normal',t:'平平无奇念完了书，没什么特别的事'},
+    {type:'normal',t:'和邻居家的小孩一起长大，后来搬家再没见过'},
+    {type:'normal',t:'成绩中等偏上，老师记不住名字'},
+    {type:'normal',t:'喜欢放学后去小卖部买辣条冰棍'},
+    {type:'normal',t:'暑假在老家学会了打麻将'},
+    {type:'normal',t:'攒了很久零花钱买了第一本漫画书'},
+    {type:'normal',t:'每天最开心是放学路上跟小伙伴瞎逛'},
+    {type:'rough',t:'家里条件不好差点没书读，但坚持下来了'},
+    {type:'rough',t:'被同学排挤过一段时间，后来转学了'},
+    {type:'rough',t:'中考/高考失利，去了不喜欢的学校'},
+    {type:'rough',t:'小时候生过一场大病，在医院待了很久'},
+    {type:'rough',t:'转学好几次从来没交到过好朋友'},
+    {type:'rough',t:'小时候说话口吃被嘲笑过'},
+    {type:'rough',t:'父母离婚了，在单亲家庭中长大'}
   ],
   storyMid:[
-    {type:'good',text:'遇到了一个贵人，改变了职业方向'},
-    {type:'good',text:'一场旅行中找到了人生方向，回来就辞职创业了'},
-    {type:'good',text:'在健身房认识了未来的另一半，一见钟情'},
-    {type:'good',text:'35岁做了个大胆的决定，所有人都觉得疯了但成功了'},
-    {type:'good',text:'在咖啡厅被星探发掘，人生换了赛道'},
-    {type:'good',text:'创业失败三次后终于成功了，第四次成了'},
-    {type:'good',text:'买了人生第一套房，拿到钥匙那天哭了'},
-    {type:'normal',text:'换了好几份工作，终于找到了适合自己的'},
-    {type:'normal',text:'相亲认识了一个还不错的人，平淡但温暖'},
-    {type:'normal',text:'存了好几年的钱付了首付，有了自己的小窝'},
-    {type:'normal',text:'养了一只猫/狗，从此人生有了牵挂'},
-    {type:'normal',text:'被朋友拉着报了个兴趣班，没想到打开了新世界'},
-    {type:'normal',text:'公司团建时发现自己还有登山的天赋'},
-    {type:'normal',text:'搬家了，新邻居是个很有意思的人'},
-    {type:'rough',text:'创业被合伙人骗了，一夜回到解放前'},
-    {type:'rough',text:'公司裁员，35岁被迫重新找工作'},
-    {type:'rough',text:'投资失败亏了一大笔钱，好几年才缓过来'},
-    {type:'rough',text:'离婚了，一个人重新开始生活'},
-    {type:'rough',text:'被最信任的朋友背叛过，再也不轻易信人'},
-    {type:'rough',text:'出过一次小事故，之后开始重新审视人生'},
-    {type:'rough',text:'被调到不喜欢的城市工作，一切从头开始'}
+    {type:'good',t:'遇到了一个贵人，改变了职业方向'},
+    {type:'good',t:'一场旅行中找到人生方向，回来辞职创业'},
+    {type:'good',t:'在健身房认识了未来的另一半，一见钟情'},
+    {type:'good',t:'35岁做了大胆的决定，所有人都觉得疯了但成功了'},
+    {type:'good',t:'在咖啡厅被星探发掘，人生换了赛道'},
+    {type:'good',t:'创业失败三次后终于成功了，第四次成了'},
+    {type:'good',t:'买了人生第一套房，拿到钥匙那天哭了'},
+    {type:'good',t:'随手做的副业突然爆火，月入六位数'},
+    {type:'normal',t:'换了好几份工作，终于找到适合自己的'},
+    {type:'normal',t:'相亲认识了一个还不错的人，平淡但温暖'},
+    {type:'normal',t:'存了好几年的钱付了首付，有了自己的小窝'},
+    {type:'normal',t:'养了一只猫/狗，从此人生有了牵挂'},
+    {type:'normal',t:'被朋友拉着报了个兴趣班，打开了新世界'},
+    {type:'normal',t:'公司团建时发现自己还有登山的天赋'},
+    {type:'normal',t:'搬家了，新邻居是个很有意思的人'},
+    {type:'rough',t:'创业被合伙人骗了，一夜回到解放前'},
+    {type:'rough',t:'公司裁员，35岁被迫重新找工作'},
+    {type:'rough',t:'投资失败亏了一大笔钱，好几年才缓过来'},
+    {type:'rough',t:'离婚了，一个人重新开始生活'},
+    {type:'rough',t:'被最信任的朋友背叛过，再也不轻易信人'},
+    {type:'rough',t:'出过一次小事故，之后开始重新审视人生'},
+    {type:'rough',t:'被调到不喜欢的城市，一切从头开始'}
   ],
   storyOld:[
-    {type:'good',text:'住在一个有院子的房子里，每天种花喝茶，儿孙绕膝'},
-    {type:'good',text:'写的书出版了，有人因此改变了人生'},
-    {type:'good',text:'和老伴一起环游了中国，圆了年轻时的梦'},
-    {type:'good',text:'成了小区里最会讲故事的老头/老太太'},
-    {type:'good',text:'被年轻人尊称为老师，经常被请去分享人生经验'},
-    {type:'good',text:'拥有了一群可以随时打扰的老朋友'},
-    {type:'good',text:'终于实现了年轻时的梦想，虽然晚了点但不遗憾'},
-    {type:'normal',text:'退休后开始学一直想学的东西，也算圆梦了'},
-    {type:'normal',text:'每天早上去公园晨练，跟一群老头老太聊天'},
-    {type:'normal',text:'学会了用智能手机，开始刷短视频打发时间'},
-    {type:'normal',text:'开始写回忆录，发现记不太清楚年轻的事了'},
-    {type:'normal',text:'爱上了逛公园和下棋/广场舞，日子很充实'},
-    {type:'normal',text:'把年轻时的照片整理成册，边看边笑'},
-    {type:'normal',text:'跟老同学建了群，每天都在里面斗图聊天'},
-    {type:'rough',text:'身体亮过红灯，之后开始认真养生'},
-    {type:'rough',text:'老伴先走了一步，花了好长时间才走出来'},
-    {type:'rough',text:'和子女之间有些隔阂，不知道该怎么开口'},
-    {type:'rough',text:'房子拆迁了，住了几十年的地方没了'},
-    {type:'rough',text:'有时候会想，如果当初选了另一条路会怎样'},
-    {type:'rough',text:'学会了一个人生活，但也习惯了'},
-    {type:'rough',text:'眼睛花了耳朵背了，但心还是年轻的'}
+    {type:'good',t:'住在有院子的房子里，每天种花喝茶，儿孙绕膝'},
+    {type:'good',t:'写的书出版了，有人因此改变了人生'},
+    {type:'good',t:'和老伴一起环游了中国，圆了年轻时的梦'},
+    {type:'good',t:'成了小区里最会讲故事的老头/老太太'},
+    {type:'good',t:'被年轻人尊称为老师，经常被请去分享经验'},
+    {type:'good',t:'拥有了一群可以随时打扰的老朋友'},
+    {type:'good',t:'终于实现了年轻时的梦想，虽然晚了但不遗憾'},
+    {type:'normal',t:'退休后开始学一直想学的东西，也算圆梦了'},
+    {type:'normal',t:'每天早上去公园晨练，跟老头老太聊天'},
+    {type:'normal',t:'学会了用智能手机，开始刷短视频'},
+    {type:'normal',t:'开始写回忆录，发现记不太清年轻的事了'},
+    {type:'normal',t:'爱上了逛公园和下棋/广场舞，日子充实'},
+    {type:'normal',t:'把年轻时的照片整理成册，边看边笑'},
+    {type:'normal',t:'跟老同学建了群，每天都在群里斗图'},
+    {type:'rough',t:'身体亮过红灯，之后开始认真养生'},
+    {type:'rough',t:'老伴先走了一步，花了好长时间才走出来'},
+    {type:'rough',t:'和子女之间有些隔阂，不知道该怎么开口'},
+    {type:'rough',t:'住了几十年的地方拆迁了'},
+    {type:'rough',t:'有时候会想如果当初选了另一条路会怎样'},
+    {type:'rough',t:'学会了一个人生活，但也习惯了'},
+    {type:'rough',t:'眼睛花了耳朵背了，但心还是年轻的'}
   ],
   wealth:[
-    {level:'🤑 财富自由级',desc:'钱不是问题，问题是钱太多不知道怎么花。投资眼光毒辣，晚年成了慈善家。'},
-    {level:'💰 富裕级',desc:'有房有车有存款，偶尔奢侈一下也不心疼。不用为钱发愁，但也还没到随便花。'},
-    {level:'💵 小康级',desc:'吃喝不愁，有少量存款，一年能旅游一两次。小日子过得挺滋润。'},
-    {level:'🧘 知足级',desc:'钱够用但不是很多，但心态很好。钱买不来快乐，而你恰好很懂快乐。'},
-    {level:'🌊 起伏级',desc:'一生财运大起大落，赚过大钱也亏过。但经历比钱值钱。'},
-    {level:'💸 随缘级',desc:'钱嘛，来了就花，没了再挣。虽然不是大富大贵的命，但总有人愿意帮你。'},
-    {level:'🏦 隐形富豪级',desc:'看着不显山露水，其实存款比谁都多。低调过日子，但遇到事儿从不缺钱。'},
-    {level:'🎰 偏财级',desc:'正经上班挣不多，但偏财运极好——中奖、红包、意外之财不断。'},
-    {level:'🌱 积累级',desc:'年轻时穷过，但越老越有钱。一辈子都在稳步上升，晚年反而最宽裕。'},
-    {level:'🌈 幸运级',desc:'总能在对的时间遇到对的机会。钱会自己找上门来。'}
+    {ico:'🤑',l:'财富自由级',d:'钱不是问题，问题是钱太多不知道怎么花。投资眼光毒辣，晚年成了慈善家。'},
+    {ico:'💰',l:'富裕级',d:'有房有车有存款，偶尔奢侈一下也不心疼。不用为钱发愁。'},
+    {ico:'💵',l:'小康级',d:'吃喝不愁，有少量存款，一年能旅游一两次。小日子挺滋润。'},
+    {ico:'🧘',l:'知足级',d:'钱够用但不是很多，但心态很好。钱买不来快乐，而你恰好很懂快乐。'},
+    {ico:'🌊',l:'起伏级',d:'一生财运大起大落，赚过大钱也亏过。但经历比钱值钱。'},
+    {ico:'💸',l:'随缘级',d:'钱嘛来了就花没了再挣。虽然不是大富大贵的命，但总有人愿意帮你。'},
+    {ico:'🏦',l:'隐形富豪级',d:'看着不显山露水，其实存款比谁都多。低调过日子，遇事从不缺钱。'},
+    {ico:'🎰',l:'偏财级',d:'正经上班挣不多，但偏财运极好——中奖、红包、意外之财不断。'},
+    {ico:'🌱',l:'积累级',d:'年轻时穷过，但越老越有钱。一辈子都在稳步上升，晚年反而最宽裕。'},
+    {ico:'🌈',l:'幸运级',d:'总能在对的时间遇到对的机会。钱会自己找上门来。'}
   ],
-  bgm:[
-    '🎹 钢琴轻音乐','🎸 民谣弹唱','🎻 古典弦乐','🎧 Lo-fi 氛围','🎷 爵士小调',
-    '🎵 City Pop','🎶 电子迷幻','🥁 世界音乐','🎤 华语经典','🎼 电影原声',
-    '🎸 独立摇滚','🎹 新古典','🌊 自然白噪音','🎧 蒸汽波','💃 拉丁律动'
-  ],
-  flower:[
-    '🌹 红玫瑰','🌷 郁金香','🌸 樱花','🌻 向日葵','🌺 木槿花',
-    '🌿 薰衣草','🌼 雏菊','🌙 夜来香','🌊 蓝莲花','❄️ 雪莲',
-    '🎋 竹子','🌳 梧桐','🍁 枫叶','🌾 稻穗','🌲 松柏',
-    '🌱 四叶草','🌛 昙花','🌰 银杏','🌸 海棠','💐 满天星'
-  ],
-  keyword:[
-    '自由','冒险','创造','治愈','勇气','梦想','改变','坚持','简单','热烈',
-    '温柔','清醒','倔强','随性','好奇','浪漫','叛逆','真诚','滚烫','自在',
-    '生长','遇见','出发','归来','柔软','通透','炽热','从容','笃定','纯粹',
-    '热烈地活着','温柔地推翻世界','做自己的光','跟生活死磕','把日子过成诗'
-  ]
+  bgm:['🎹 钢琴轻音乐','🎸 民谣弹唱','🎻 古典弦乐','🎧 Lo-fi 氛围','🎷 爵士小调','🎵 City Pop','🎶 电子迷幻','🥁 世界音乐','🎤 华语经典','🎼 电影原声','🎸 独立摇滚','🎹 新古典','🌊 自然白噪音','🎧 蒸汽波','💃 拉丁律动'],
+  flower:['🌹 红玫瑰','🌷 郁金香','🌸 樱花','🌻 向日葵','🌺 木槿花','🌿 薰衣草','🌼 雏菊','🌙 夜来香','🌊 蓝莲花','❄️ 雪莲','🎋 竹子','🍁 枫叶','🌾 稻穗','🌱 四叶草','🌰 银杏','🌸 海棠','💐 满天星','🌺 牡丹','🌵 仙人掌','🌾 蒲公英'],
+  keyword:['自由','冒险','创造','治愈','勇气','梦想','改变','坚持','简单','热烈','温柔','清醒','倔强','随性','好奇','浪漫','叛逆','真诚','滚烫','自在','生长','遇见','出发','归来','柔软','通透','炽热','从容','笃定','纯粹']
 };
 
-// ==================== GENERATE LIFE ====================
-function genLife(){
-  const era=gR(DATA.era);
-  const family=gR(DATA.family);
-  const personality=gR(DATA.personality);
-  const look=gR(DATA.look);
-  const skills=gRN(DATA.skill,3);
-  const job=gR(DATA.job);
-  const sidejob=gR(DATA.sidejob);
-  const storyChild=gR(DATA.storyChild);
-  const storyMid=gR(DATA.storyMid);
-  const storyOld=gR(DATA.storyOld);
-  const wealth=gR(DATA.wealth);
-  const bgm=gR(DATA.bgm);
-  const flower=gR(DATA.flower);
-  const keywords=gRN(DATA.keyword,3);
-  return {era,family,personality,look,skills,job,sidejob,storyChild,storyMid,storyOld,wealth,bgm,flower,keywords};
+// ==================== TONE WEIGHTS ====================
+const TONES={
+  0:{id:'tide',emoji:'🌊',name:'汹涌人生',label:'命运之潮',
+     desc:'大起大落的人生，充满变数与激情',
+     wealthBias:['🌊','🎰','💸','🏦','🌈','🌱'],
+     storyBias:{good:0.25,normal:0.3,rough:0.45}},
+  1:{id:'tree',emoji:'🌿',name:'安稳人生',label:'命运之树',
+     desc:'平实温暖的人生，稳中向好',
+     wealthBias:['💵','🧘','🌱','💰','🏦'],
+     storyBias:{good:0.35,normal:0.45,rough:0.2}},
+  2:{id:'star',emoji:'🌟',name:'璀璨人生',label:'命运之星',
+     desc:'光芒四射的人生，机遇与运气拉满',
+     wealthBias:['💰','🌈','🤑','🏦','💵','🎰'],
+     storyBias:{good:0.55,normal:0.25,rough:0.2}}
+};
+
+// ==================== GENERATE ====================
+let currentLife=null;
+let chosenTone=null;
+let stepData=[];
+
+function genLife(toneIdx){
+  const tone=TONES[toneIdx];
+  const era=gR(D.era);
+  const family=gR(D.family);
+  const trait=gR(D.trait);
+  const look=gR(D.look);
+  const skills=gRN(D.skill,3);
+  const job=gR(D.job);
+  const sidejob=gR(D.sidejob);
+
+  // Story selection with tone bias
+  function pickStoryBias(arr){
+    const roll=Math.random();
+    let cutoff=0;
+    for(const [type,weight] of Object.entries(tone.storyBias)){
+      cutoff+=weight;
+      if(roll<=cutoff){
+        const pool=arr.filter(s=>s.type===type);
+        if(pool.length>0)return gR(pool);
+      }
+    }
+    return gR(arr);
+  }
+  const storyChild=pickStoryBias(D.storyChild);
+  const storyMid=pickStoryBias(D.storyMid);
+  const storyOld=pickStoryBias(D.storyOld);
+
+  // Wealth with tone bias
+  const wealthPool=tone.wealthBias.map(ico=>D.wealth.find(w=>w.ico===ico)).filter(Boolean);
+  const wealth=wealthPool.length>0?gR(wealthPool):gR(D.wealth);
+
+  const bgm=gR(D.bgm);
+  const flower=gR(D.flower);
+  const keywords=gRN(D.keyword,3);
+  return {tone,era,family,trait,look,skills,job,sidejob,storyChild,storyMid,storyOld,wealth,bgm,flower,keywords};
 }
 
-// ==================== RENDER ====================
-let currentLife = null;
+// ==================== STEP DATA ====================
+function buildSteps(life){
+  const storyT={good:'🍀好运',normal:'🌤️日常',rough:'🌧️坎坷'};
+  return [
+    {title:'📋 专属身份',icon:'📋',
+      content:()=>`${life.era.label}${life.era.emoji} · ${life.family}<br>性格：<span class="hl">${life.trait}</span><br>外貌：${life.look}`},
+    {title:'🎯 天赋技能',icon:'🎯',
+      content:()=>life.skills.map((s,i)=>`${['✨','🌟','💫'][i]} ${s.n}`).join('<br>')},
+    {title:'💼 人生主线',icon:'💼',
+      content:()=>`主业：<span class="hl">${life.job}</span><br>副业：${life.sidejob}`},
+    {title:'📖 人生剧情',icon:'📖',
+      content:()=>`🍀 少年 · ${life.storyChild.t}<br>🌤️ 中年 · ${life.storyMid.t}<br>🌧️ 晚年 · ${life.storyOld.t}`},
+    {title:'💰 财运运势',icon:'💰',
+      content:()=>`${life.wealth.ico} <span class="hl">${life.wealth.l}</span><br>${life.wealth.d}`},
+    {title:'🎨 专属印记',icon:'🎨',
+      content:()=>`🎵 BGM：${life.bgm}<br>🌸 代表花：${life.flower}<br>✨ 关键词：${life.keywords.join(' · ')}`}
+  ];
+}
 
-function renderLife(life){
+// ==================== CARD PICK ====================
+let picked=false;
+function pickCard(idx){
+  if(picked)return;
+  picked=true;
+  chosenTone=idx;
+  const cards=document.querySelectorAll('.pick-card');
+  cards.forEach((c,i)=>{
+    c.classList.add('flipped');
+    if(i!==idx)c.classList.add('dim');
+    else c.classList.add('chosen');
+  });
+
+  setTimeout(()=>{
+    // Generate life and start steps
+    currentLife=genLife(idx);
+    stepData=buildSteps(currentLife);
+    document.getElementById('homeView').style.display='none';
+    document.getElementById('stepView').style.display='block';
+    document.getElementById('resultView').style.display='none';
+    showStep(0);
+  },800);
+}
+
+// ==================== STEP SYSTEM ====================
+let currentStep=0;
+let isTyping=false;
+
+function showStep(i){
+  currentStep=i;
+  const card=document.getElementById('stepCard');
+  const content=document.getElementById('stepContent');
+  const title=document.getElementById('stepTitle');
+  const counter=document.getElementById('stepCounter');
+  const bar=document.getElementById('stepBar');
+  const btn=document.getElementById('nextBtn');
+
+  card.classList.remove('show');
+  counter.textContent=`第 ${i+1} / ${stepData.length} 章 · ${stepData[i].icon} ${stepData[i].title.replace(/^.{1,2}\s/,'')}`;
+  bar.style.width=((i)/(stepData.length)*100)+'%';
+  content.innerHTML='';
+  content.className='step-content';
+
+  if(i===stepData.length-1){
+    btn.textContent='✨ 查看完整人生档案';
+  }else{
+    btn.textContent='下一章 →';
+  }
+
+  setTimeout(()=>{
+    card.classList.add('show');
+    // Typewriter effect
+    const html=stepData[i].content();
+    typeWriter(content,html);
+  },300);
+}
+
+function typeWriter(el,html){
+  isTyping=true;
+  el.classList.add('tw-cursor');
+  // Strip HTML tags for typing, then insert as HTML
+  const temp=document.createElement('div');
+  temp.innerHTML=html;
+  const fullText=temp.textContent || temp.innerText || '';
+  let idx=0;
+  el.textContent='';
+
+  function type(){
+    if(idx>=fullText.length){
+      el.classList.remove('tw-cursor');
+      el.innerHTML=html;
+      isTyping=false;
+      return;
+    }
+    // Type char by char
+    el.textContent=fullText.substring(0,idx+1);
+    idx++;
+    // Speed variation based on punctuation
+    const ch=fullText[idx-1];
+    const delay='，。！？；、'.includes(ch)?80:25;
+    setTimeout(type,delay);
+  }
+  setTimeout(type,300);
+}
+
+function nextStep(){
+  if(isTyping){
+    // Skip typing
+    const content=document.getElementById('stepContent');
+    content.classList.remove('tw-cursor');
+    content.innerHTML=stepData[currentStep].content();
+    isTyping=false;
+    return;
+  }
+  if(currentStep<stepData.length-1){
+    showStep(currentStep+1);
+  }else{
+    // Show final result
+    showResult();
+  }
+}
+
+// ==================== RESULT ====================
+function showResult(){
+  document.getElementById('stepView').style.display='none';
+  document.getElementById('resultView').style.display='block';
+  const card=document.getElementById('resultCard');
   const c=document.getElementById('cardContent');
-  const storyTypes = {good:'🍀',normal:'🌤️',rough:'🌧️'};
-  const storyLabels = {good:'好运事件',normal:'普通日常',rough:'人生坎坷'};
-  const storyNames = {child:'少年趣事',mid:'中年机遇',old:'晚年结局'};
+  const l=currentLife;
+  const storyT={good:'🍀',normal:'🌤️',rough:'🌧️'};
 
   c.innerHTML=`
+    <div class="result-hd">
+      <span class="rh-icon">${l.tone.emoji}</span>
+      <div class="rh-title">${l.tone.name}</div>
+      <div class="rh-sub">${l.tone.label} · ${l.tone.desc}</div>
+    </div>
+
     <div class="sec">
       <div class="sec-hd"><span class="ico">📋</span><span class="tt">专属身份</span><span class="ln"></span></div>
-      <div class="sec-body">
-        <span class="hl">${life.era.label}${life.era.emoji}</span> · ${life.family}<br>
-        性格：<span class="hl">${life.personality}</span> · 外貌：${life.look}
-      </div>
+      <div class="sec-body">${l.era.label}${l.era.emoji} · ${l.family}<br>性格：<span class="hl">${l.trait}</span> · 外貌：${l.look}</div>
     </div>
 
     <div class="sec">
       <div class="sec-hd"><span class="ico">🎯</span><span class="tt">天赋技能</span><span class="ln"></span></div>
-      <div class="tags">
-        ${life.skills.map((s,i)=>`<span class="tag ${['','green','orange'][i%3]}">✨ ${s.name}</span>`).join('')}
-      </div>
+      <div class="tags">${l.skills.map(s=>`<span class="tag">✨ ${s.n}</span>`).join('')}</div>
     </div>
 
     <div class="sec">
       <div class="sec-hd"><span class="ico">💼</span><span class="tt">人生主线</span><span class="ln"></span></div>
-      <div class="sec-body">
-        主业：<span class="hl">${life.job}</span><br>
-        副业：${life.sidejob} <span style="font-size:11px;color:var(--text2)">（偷偷干，不是所有人都知道）</span>
-      </div>
+      <div class="sec-body">主业：<span class="hl">${l.job}</span><br>副业：${l.sidejob}</div>
     </div>
 
     <div class="sec">
       <div class="sec-hd"><span class="ico">📖</span><span class="tt">人生剧情</span><span class="ln"></span></div>
-      ${['storyChild','storyMid','storyOld'].map(key=>{
-        const s=life[key];const nm={storyChild:'少年趣事',storyMid:'中年机遇',storyOld:'晚年结局'}[key];
-        return `<div class="story ${s.type}">
-          <span class="s-badge">${storyTypes[s.type]} ${nm}</span>
-          ${s.text}
-        </div>`;
-      }).join('')}
+      <div class="story ${l.storyChild.type}"><span class="s-badge">${storyT[l.storyChild.type]} 少年</span>${l.storyChild.t}</div>
+      <div class="story ${l.storyMid.type}" style="margin-top:4px"><span class="s-badge">${storyT[l.storyMid.type]} 中年</span>${l.storyMid.t}</div>
+      <div class="story ${l.storyOld.type}" style="margin-top:4px"><span class="s-badge">${storyT[l.storyOld.type]} 晚年</span>${l.storyOld.t}</div>
     </div>
 
     <div class="sec">
       <div class="sec-hd"><span class="ico">💰</span><span class="tt">财运运势</span><span class="ln"></span></div>
-      <div class="fortune-box">
-        <span class="fortune-icon">${life.wealth.level.split(' ')[0]}</span>
-        <div class="fortune-info">
-          <div class="fortune-level">${life.wealth.level}</div>
-          <div class="fortune-desc">${life.wealth.desc}</div>
-        </div>
-      </div>
+      <div class="fortune-box"><span class="fortune-icon">${l.wealth.ico}</span><div class="fortune-info"><div class="fortune-level">${l.wealth.l}</div><div class="fortune-desc">${l.wealth.d}</div></div></div>
     </div>
 
     <div class="sec">
       <div class="sec-hd"><span class="ico">🎨</span><span class="tt">专属印记</span><span class="ln"></span></div>
       <div class="misc-grid">
-        <div class="misc-item"><div class="mi-label">🎵 BGM</div><div class="mi-value">${life.bgm}</div></div>
-        <div class="misc-item"><div class="mi-label">🌸 代表花卉</div><div class="mi-value">${life.flower}</div></div>
+        <div class="misc-item"><div class="mi-label">🎵 BGM</div><div class="mi-value">${l.bgm}</div></div>
+        <div class="misc-item"><div class="mi-label">🌸 花卉</div><div class="mi-value">${l.flower}</div></div>
       </div>
-      <div style="margin-top:10px">
-        <div class="tags">
-          ${life.keywords.map(k=>`<span class="tag green">✦ ${k}</span>`).join('')}
-        </div>
-      </div>
+      <div style="margin-top:8px"><div class="tags">${l.keywords.map(k=>`<span class="tag green">✦ ${k}</span>`).join('')}</div></div>
     </div>
   `;
-}
-
-// ==================== DRAW ====================
-function drawLife(){
-  const btn=document.getElementById('drawBtn');
-  const home=document.getElementById('homeView');
-  const result=document.getElementById('resultView');
-  const card=document.getElementById('resultCard');
-  const capture=document.getElementById('capture-area');
-
-  btn.classList.add('loading');
-  btn.innerHTML='<span class="icon">🌀</span>正在生成...';
 
   setTimeout(()=>{
-    const life=genLife();
-    currentLife=life;
-    renderLife(life);
+    card.classList.add('show');
+    card.scrollIntoView({behavior:'smooth',block:'start'});
+  },200);
+}
 
-    home.style.display='none';
-    result.style.display='block';
-    capture.style.width='';
-
-    // shake animation
-    card.classList.remove('show','shake');
-    void card.offsetWidth;
-    card.classList.add('shake');
-    setTimeout(()=>{
-      card.classList.remove('shake');
-      card.classList.add('show');
-    },400);
-
-    btn.classList.remove('loading');
-    btn.innerHTML='<span class="icon">🎲</span>抽取全新人生';
-
-    // scroll to result
-    setTimeout(()=>{
-      result.scrollIntoView({behavior:'smooth',block:'start'});
-    },500);
-  },1200);
+function restart(){
+  currentStep=0;picked=false;chosenTone=null;currentLife=null;
+  document.getElementById('homeView').style.display='block';
+  document.getElementById('stepView').style.display='none';
+  document.getElementById('resultView').style.display='none';
+  document.getElementById('resultCard').classList.remove('show');
+  const cards=document.querySelectorAll('.pick-card');
+  cards.forEach(c=>{c.classList.remove('flipped','dim','chosen')});
 }
 
 // ==================== SCREENSHOT ====================
 function captureCard(){
   const el=document.getElementById('capture-area');
   if(!el)return;
-  // get computed bg color
-  const bg=getComputedStyle(document.body).getPropertyValue('--bg').trim();
-  const parseBg = window.getComputedStyle(document.body).backgroundColor;
-
-  html2canvas(el,{
-    backgroundColor: parseBg,
-    scale:2,
-    useCORS:true,
-    logging:false
-  }).then(function(canvas){
-    const link=document.createElement('a');
-    link.download='随机人生_'+(currentLife?currentLife.era.label:'')+'.png';
-    link.href=canvas.toDataURL('image/png');
-    link.click();
-    showToast('📸 截图已保存');
-  }).catch(function(){
-    showToast('截图失败，请尝试手动截图');
-  });
+  const bg=window.getComputedStyle(document.body).backgroundColor;
+  html2canvas(el,{backgroundColor:bg,scale:2,useCORS:true,logging:false})
+    .then(c=>{
+      const a=document.createElement('a');
+      a.download='随机人生_'+(currentLife?currentLife.tone.name:'')+'.png';
+      a.href=c.toDataURL('image/png');
+      a.click();
+      showToast('📸 截图已保存');
+    }).catch(()=>showToast('截图失败，请尝试手动截图'));
 }
 
-// ==================== SHARE COPY ====================
+// ==================== SHARE ====================
 function copyShare(){
   if(!currentLife){showToast('请先抽取人生');return}
   const l=currentLife;
-  const text=`🎲 我抽到了这样一个人生——
+  const t=`🎲 我抽到了「${l.tone.name}」！
 
 📋 ${l.era.label} · ${l.family}
-性格：${l.personality} · 外貌：${l.look}
+😌 ${l.trait} · ${l.look}
 
-🎯 天赋：${l.skills.map(s=>s.name).join('、')}
+🎯 天赋：${l.skills.map(s=>s.n).join('、')}
 
-💼 主业：${l.job} ｜ 副业：${l.sidejob}
+💼 主业：${l.job} · 副业：${l.sidejob}
 
-📖 ${l.storyChild.text}
+📖 ${l.storyChild.t}
 
-💰 财运：${l.wealth.level}
+💰 财运：${l.wealth.l}
 
-🌸 代表花：${l.flower} · BGM：${l.bgm}
-关键词：${l.keywords.join(' · ')}
+🌸 ${l.flower} · 🎵 ${l.bgm}
+✨ ${l.keywords.join(' · ')}
 
-—— 随机人生模拟器 · 你也来抽一次？`;
+—— 你也来选一张命运卡牌吧 🔮`;
 
   if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(()=>showToast('📋 文案已复制，去发朋友圈吧！')).catch(()=>copyFallback(text));
-  }else{copyFallback(text)}
+    navigator.clipboard.writeText(t).then(()=>showToast('📋 文案已复制，去发朋友圈吧！')).catch(()=>cf(t));
+  }else{cf(t)}
 }
-
-function copyFallback(text){
+function cf(t){
   const ta=document.createElement('textarea');
-  ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  ta.value=t;ta.style.position='fixed';ta.style.opacity='0';
   document.body.appendChild(ta);ta.select();
   document.execCommand('copy');document.body.removeChild(ta);
   showToast('📋 文案已复制，去发朋友圈吧！');
@@ -524,29 +656,28 @@ function copyFallback(text){
 // ==================== THEME ====================
 function toggleTheme(){
   document.documentElement.classList.toggle('dark');
-  const btn=document.getElementById('themeToggle');
-  const isDark=document.documentElement.classList.contains('dark');
-  localStorage.setItem('life-theme',isDark?'dark':'light');
-  btn.textContent=isDark?'☀️':'🌙';
+  const b=document.getElementById('themeToggle');
+  b.textContent=document.documentElement.classList.contains('dark')?'☀️':'🌙';
+  localStorage.setItem('life-theme',document.documentElement.classList.contains('dark')?'dark':'light');
 }
-// load saved theme
 (function(){
-  const saved=localStorage.getItem('life-theme');
-  if(saved==='dark'){document.documentElement.classList.add('dark');document.getElementById('themeToggle').textContent='☀️'}
+  if(localStorage.getItem('life-theme')==='dark'){document.documentElement.classList.add('dark');document.getElementById('themeToggle').textContent='☀️'}
 })();
 
 // ==================== TOAST ====================
-let toastTimer=null;
-function showToast(msg){
+let tt=null;
+function showToast(m){
   const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
+  t.textContent=m;t.classList.add('show');
+  clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-// ==================== KEYBOARD SHORTCUT ====================
+// ==================== KEYBOARD ====================
 document.addEventListener('keydown',function(e){
-  if(e.key===' '&&!e.target.matches('input,textarea,button')){e.preventDefault();drawLife()}
+  if(e.key==='Enter'||e.key===' '){
+    const sv=document.getElementById('stepView');
+    if(sv.style.display!=='none'&&sv.style.display!==''&&!e.target.matches('input,textarea,button')){e.preventDefault();nextStep()}
+  }
 });
 </script>
 </body>
